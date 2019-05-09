@@ -2,10 +2,11 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
-# todo: save files to timestamped folder
+# todo: save files to timestamped gzip
 
 PROCESS = CrawlerProcess(get_project_settings())
 PROCESS.crawl('backup_posts')
 PROCESS.crawl('backup_comments')
 PROCESS.crawl('backup_users')
 PROCESS.start()
+print('Done!')

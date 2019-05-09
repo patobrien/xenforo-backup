@@ -19,16 +19,16 @@ def clean_markup(markup):
     markup = markup.replace('\r', '').replace('\n', '').replace('\t', '')
     return markup
 
-def check_conditions(link):
-    '''Check conditions for generator'''
-    return link and not isinstance(link, str) and link.css('::text').get() == 'Next >'
-
 def get_selector(response, selector):
     '''General getter with fallback'''
     value = response.css(selector).get()
     if value:
         return value
     return None
+
+def check_conditions(link):
+    '''Check conditions for generator'''
+    return link and not isinstance(link, str) and link.css('::text').get() == 'Next >'
 
 def next_link(res):
     '''Get next link'''
@@ -60,7 +60,7 @@ def get_author_info(res, sel):
         name = author_href.split('/')[1].split('.')
         if name and name[0] and name[1] and name_long:
             return {
-                'user_id': name[1],
+                'user_id': int(name[1]),
                 'user_name': name[0],
                 'user_link': author_href,
                 'user_name_long': name_long,

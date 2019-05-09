@@ -50,7 +50,7 @@ class BackupCommentsSpider(scrapy.Spider):
             if href:
                 yield res.follow(href, get_comments)
         # follow pagination 'Next >' to additional post lists
-        href = next_link(get_selector(res, '.afterDiscussionListHandle .PageNav a.text'))
+        href = next_link(res.css('.afterDiscussionListHandle .PageNav a.text'))
         if href:
             yield res.follow(href, self.post_list)
 
