@@ -40,7 +40,7 @@ class BackupCommentsSpider(scrapy.Spider):
     start_urls = ['https://bitco.in/forum/']
     custom_settings = {
         'FEED_FORMAT': 'json',
-        'FEED_URI': 'backup_comments.json',
+        'FEED_URI': 'data/backup_comments.json',
     }
 
     def post_list(self, res):

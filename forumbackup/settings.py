@@ -27,7 +27,8 @@ ITEM_PIPELINES = {
 
 # TMP_FILE = os.path.join(os.path.dirname(sys.modules['items'].__file__), 'tmp/items.csv')
 
-IMAGES_STORE = os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'images/')
+IMAGES_STORE = \
+    os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'data/images/')
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

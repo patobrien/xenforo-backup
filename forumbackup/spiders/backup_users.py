@@ -52,7 +52,7 @@ class BackupUsersSpider(scrapy.Spider):
     start_urls = ['https://bitco.in/forum/']
     custom_settings = {
         'FEED_FORMAT': 'json',
-        'FEED_URI': 'backup_users.json',
+        'FEED_URI': 'data/backup_users.json',
         'ITEM_PIPELINES': {
             'scrapy.pipelines.images.ImagesPipeline': 100,
             'forumbackup.pipelines.DuplicateUsersPipeline': 200,

@@ -103,7 +103,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-*.json
-images/
-images/*
-forumbackup/spiders/*_test.py
+data/*
+forumbackup/spiders/*test.py
+*.zip
