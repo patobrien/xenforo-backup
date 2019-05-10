@@ -1,12 +1,17 @@
 # xenForo Backup
 
-Backup xenForo forums with this simple script that leverages Scrapy.
+Backup xenForo-style forums with this simple script that leverages Scrapy.
 
 # Dependencies
 
-- Python 3
-- Pillow
+- OSX/Linux + Python3
+- Scrapy
+- Pillow for Python3
 
 # Run
 
->$ python run_spiders.py
+> $ python run_spiders.py
+
+# Data
+
+The resulting zip file in the backups/ directory can be quite large due to including comment images.
