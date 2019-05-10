@@ -33,6 +33,6 @@ def main():
     process.crawl('backup_comments')
     process.crawl('backup_users')
     process.start()
+    zip_files()
 
 main()
-zip_files()
