@@ -19,6 +19,9 @@ def get_posts(res):
     post['post'] = \
         clean_markup(get_selector(res.css('.InlineModForm ol.messageList li')[0], \
         '.messageContent article'))
+    is_poll = get_selector(res, '.PollContainer .pollContent')
+    if is_poll:
+        post['poll'] = clean_markup(is_poll)
     yield post
 
 class BackupPostsSpider(scrapy.Spider):

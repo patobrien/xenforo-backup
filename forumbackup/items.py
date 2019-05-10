@@ -14,6 +14,7 @@ class PostItem(scrapy.Item):
     images = scrapy.Field()
     image_urls = scrapy.Field()
     post = scrapy.Field()
+    poll = scrapy.Field()
 
 class CommentItem(scrapy.Item):
     '''Comments'''
