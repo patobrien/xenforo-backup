@@ -54,6 +54,7 @@ def main():
     process.crawl('backup_comments')
     process.crawl('backup_users')
     process.start()
+    zip_files()
     update_count()
 
 main()
