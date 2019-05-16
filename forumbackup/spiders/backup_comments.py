@@ -2,7 +2,7 @@
 import scrapy
 from ..items import CommentItem
 from ..helpers import get_images, clean_markup, get_selector, \
-next_link, get_post_id, get_author_info
+next_link, get_post_id, get_author_info, check_run_count
 
 def get_comment_number(res):
     '''Get the comment number'''
@@ -42,6 +42,10 @@ class BackupCommentsSpider(scrapy.Spider):
         'FEED_FORMAT': 'json',
         'FEED_URI': 'data/backup_comments.json',
     }
+    if check_run_count():
+        custom_settings['ITEM_PIPELINES'] = {
+            'scrapy.pipelines.images.ImagesPipeline': 100,
+        }
 
     def post_list(self, res):
         '''Find post urls from category pages'''

@@ -1,8 +1,11 @@
 '''xenForo Backup Scraper'''
 import datetime
 import os
+import json
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
+
+STATUS_FILENAME = 'status.json'
 
 def get_data_dir():
     '''Get the data directory'''
@@ -26,6 +29,24 @@ def zip_files():
         os.system(zip_command)
         cleanup()
 
+def save_count(previous_count):
+    '''Increment and save'''
+    previous_count = int(previous_count) + 1
+    with open(STATUS_FILENAME, 'w+') as json_file:
+        json.dump({'run_count': previous_count}, json_file)
+
+def update_count():
+    '''Increment the run_count var so that we only download files every 5th backup.'''
+    if os.path.isfile(STATUS_FILENAME):
+        with open(STATUS_FILENAME) as json_file:
+            data = json.load(json_file)
+            run_count = data['run_count'] if data and data['run_count'] else 0
+            json_file.close()
+            save_count(run_count)
+    else:
+        json_file = open(STATUS_FILENAME, 'w+')
+        json.dump({'run_count': 0}, json_file)
+
 def main():
     '''Run the spiders'''
     process = CrawlerProcess(get_project_settings())
@@ -33,6 +54,6 @@ def main():
     process.crawl('backup_comments')
     process.crawl('backup_users')
     process.start()
-    zip_files()
+    update_count()
 
 main()

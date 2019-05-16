@@ -1,7 +1,7 @@
 '''Backup Users'''
 import scrapy
 from ..items import UserItem
-from ..helpers import get_images, get_selector, next_link, get_author_info
+from ..helpers import get_images, get_selector, next_link, get_author_info, check_run_count
 
 def get_extra_user_info(res):
     '''Get extra user info'''
@@ -54,10 +54,13 @@ class BackupUsersSpider(scrapy.Spider):
         'FEED_FORMAT': 'json',
         'FEED_URI': 'data/backup_users.json',
         'ITEM_PIPELINES': {
-            'scrapy.pipelines.images.ImagesPipeline': 100,
             'forumbackup.pipelines.DuplicateUsersPipeline': 200,
         }
     }
+    if check_run_count():
+        custom_settings['ITEM_PIPELINES'] = {
+            'scrapy.pipelines.images.ImagesPipeline': 100,
+        }
 
     def post_list(self, res):
         '''Find post urls from category pages'''

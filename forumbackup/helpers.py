@@ -1,4 +1,7 @@
 '''Spider Helpers'''
+import os
+import json
+
 IMG_DOMAIN = 'https://bitco.in/forum/'
 
 def fix_image_url(img):
@@ -66,3 +69,13 @@ def get_author_info(res, sel):
                 'user_name_long': name_long,
             }
     return None
+
+def check_run_count():
+    '''Return true for every 5th run'''
+    path_to_status = os.path.join(os.getcwd(), 'status.json')
+    if os.path.isfile(path_to_status):
+        with open(path_to_status) as json_file:
+            data = json.load(json_file)
+            run_count = data['run_count'] if data and data['run_count'] else 0
+            return int(run_count) % 5 == 0
+    return False

@@ -21,11 +21,14 @@ USER_AGENT = 'xenForo Backup Bot'
 ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    'scrapy.pipelines.images.ImagesPipeline': 100,
-}
 
-# TMP_FILE = os.path.join(os.path.dirname(sys.modules['items'].__file__), 'tmp/items.csv')
+#
+# The images pipeline is now defined within each spider.
+# It runs every 5th backup to save space
+#
+# ITEM_PIPELINES = {
+#     'scrapy.pipelines.images.ImagesPipeline': 100,
+# }
 
 IMAGES_STORE = \
     os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'data/images/')
