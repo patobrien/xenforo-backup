@@ -29,7 +29,7 @@ def get_comments(res):
         yield comment
     # follow pagination 'Next >' to additional comments lists
     href = next_link(res.css('.pageNavLinkGroup .PageNav a.text'))
-    if href and href:
+    if href:
         yield res.follow(href, get_comments)
 
 class BackupCommentsSpider(scrapy.Spider):

@@ -41,7 +41,7 @@ def get_users(res):
         yield user
     # follow pagination 'Next >' to additional comments
     href = next_link(res.css('.pageNavLinkGroup .PageNav a.text'))
-    if href and href:
+    if href:
         yield res.follow(href, get_users)
 
 class BackupUsersSpider(scrapy.Spider):
